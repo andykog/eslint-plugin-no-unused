@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-no-unused",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "find unused properties",
   "keywords": [
     "eslint",
@@ -8,6 +8,10 @@
     "eslint-plugin"
   ],
   "author": "Andrew Kogut",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andykog/eslint-plugin-no-unused.git"
+  },
   "main": "./lib/index.js",
   "exports": "./lib/index.js",
   "scripts": {
