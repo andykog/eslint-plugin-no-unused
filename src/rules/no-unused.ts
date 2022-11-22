@@ -1,21 +1,18 @@
 import * as ts from 'typescript';
 import {Rule} from 'eslint';
 import * as ESTree from 'estree';
-import {analyze} from 'no-unused'
+import {analyze} from 'no-unused';
 
 let previousProgram: any;
+let seenIdentifiers: Set<any> | undefined;
+let usedIdentifiers: WeakSet<any> | undefined;
 
 function getParserServices(context: Rule.RuleContext) {
-  if (
-    !context.parserServices?.program ||
-    !context.parserServices?.esTreeNodeToTSNodeMap ||
-    (previousProgram && context.parserServices.program !== previousProgram)
-  ) {
+  if (!context.parserServices?.program || !context.parserServices?.esTreeNodeToTSNodeMap) {
     throw new Error(
       'You have used a rule which requires parserServices to be generated. You must therefore provide a value for the "parserOptions.project" property for @typescript-eslint/parser.',
     );
   }
-  previousProgram = context.parserServices.program;
   return context.parserServices;
 }
 
@@ -35,13 +32,14 @@ export const noUnused: Rule.RuleModule = {
   create(context) {
     const parserServices = getParserServices(context);
     const {program} = parserServices;
-    const {seenIdentifiers, usedIdentifiers} = analyze(program);
+    if (previousProgram !== program) {
+      previousProgram = program;
+      ({seenIdentifiers, usedIdentifiers} = analyze(program));
+    }
 
     const isUnusedIdentifier = (node: ESTree.Identifier) => {
       const originalNode = parserServices.esTreeNodeToTSNodeMap.get(node);
-      return (
-        seenIdentifiers.has(originalNode) && !usedIdentifiers.has(originalNode)
-      );
+      return seenIdentifiers?.has(originalNode) && !usedIdentifiers?.has(originalNode);
     };
 
     return {
