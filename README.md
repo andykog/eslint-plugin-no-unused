@@ -1,4 +1,4 @@
-# no-unused
+# eslint-plugin-no-unused
 
 [experimental, in early stage of development]
 
@@ -18,12 +18,12 @@ npm install @typescript-eslint/parser --save-dev
 
 Make sure `@typescript-eslint/parser` is configured in your `.eslintrc` configuration file,
 and has `parserOptions.project` property.
-```
+```json
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json"
-  },
+  }
 }
 
 ```
