@@ -17,7 +17,10 @@ ruleTester.run('no-unused', rule, {
   invalid: [
     {
       code: 'const x = {a: 1};',
-      errors: [{message: "'a' is never used", type: 'Identifier'}],
+      errors: [
+        {message: "'x' is never used", type: 'Identifier'},
+        {message: "'a' is never used", type: 'Identifier'},
+      ],
       filename: 'tests/file.ts',
     },
   ],
