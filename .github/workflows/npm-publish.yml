@@ -32,7 +32,7 @@ jobs:
           export LATESTS=$(npm show no-unused@0.0.x version --json)
           LATEST=$(node -p "JSON.parse(process.env.LATESTS).at(-1)")
           NEXT=$(echo $LATEST | awk -F. '/[0-9]+\./{$NF++;print}' OFS=.)
-          npm version $NEXT
+          npm version $NEXT --git-tag-version false
       - run: npm ci
       - run: npm run build
       - run: npm publish
