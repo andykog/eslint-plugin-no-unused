@@ -2,7 +2,8 @@
 
 [experimental, in early stage of development]
 
-Finds unused TypeScript properties
+Finds unused TypeScript code with [no-unused](https://www.npmjs.com/package/no-unused).
+
 
 ## Installation
 
@@ -39,13 +40,23 @@ You can omit the `eslint-plugin-` prefix:
 }
 ```
 
-
 Then configure the rule under the rules section.
 
 ```json
 {
   "rules": {
-    "no-unused/no-unused": 2
+    "no-unused/no-unused": ["warn", {"ignore": "**/*.spec.ts"}]
   }
 }
 ```
+
+
+## Options
+
+- `ignore` (glob pattern) - pattern for ignored files. These files won't be analyzed.
+  Hint: add `**/*.spec.ts` then identifiers that are used only in tests will be marked as unused.
+
+
+## CLI tool
+
+See [no-unused](https://www.npmjs.com/package/no-unused).

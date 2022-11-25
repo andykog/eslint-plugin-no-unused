@@ -27,6 +27,15 @@ export const noUnused: Rule.RuleModule = {
       recommended: false,
       url: undefined,
     },
+    schema: [
+      {
+        type: 'object',
+        properties: {
+          ignore: {type: 'string'},
+        },
+        additionalProperties: false,
+      },
+    ],
   },
 
   create(context) {
@@ -34,7 +43,9 @@ export const noUnused: Rule.RuleModule = {
     const {program} = parserServices;
     if (previousProgram !== program) {
       previousProgram = program;
-      ({seenIdentifiers, usedIdentifiers} = analyze(program));
+      ({seenIdentifiers, usedIdentifiers} = analyze(program, {
+        ignoredFilesPattern: context.options[0]?.ignore,
+      }));
     }
 
     const isUnusedIdentifier = (node: ESTree.Identifier) => {
