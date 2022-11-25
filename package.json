@@ -17,7 +17,7 @@
   "scripts": {
     "build": "rm -rf lib/* ; tsc",
     "lint": "eslint .",
-    "test": "mocha tests --recursive"
+    "test": "mocha tests --recursive --timeout 10000"
   },
   "dependencies": {
     "no-unused": "*"
