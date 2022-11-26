@@ -20,7 +20,7 @@
     "test": "mocha tests --recursive --timeout 10000"
   },
   "dependencies": {
-    "no-unused": "*"
+    "no-unused": "0.0.x"
   },
   "devDependencies": {
     "@types/eslint": "^8.4.10",
