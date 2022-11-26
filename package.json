@@ -2,11 +2,7 @@
   "name": "eslint-plugin-no-unused",
   "version": "0.0.x",
   "description": "find unused properties",
-  "keywords": [
-    "eslint",
-    "eslintplugin",
-    "eslint-plugin"
-  ],
+  "keywords": ["typescript", "unused", "eslint", "eslintplugin", "eslint-plugin"],
   "author": "Andrew Kogut",
   "repository": {
     "type": "git",
