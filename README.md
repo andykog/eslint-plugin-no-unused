@@ -45,7 +45,10 @@ Then configure the rule under the rules section.
 ```json
 {
   "rules": {
-    "no-unused/no-unused": ["warn", {"ignore": "**/*.spec.ts"}]
+    "no-unused/no-unused": ["warn", {
+      "ignore": "**/*.spec.ts",
+      "ignoreExports": "src/entrypoint.ts,src/**/*.otherEntrypoints.ts"
+    }]
   }
 }
 ```
@@ -55,6 +58,8 @@ Then configure the rule under the rules section.
 
 - `ignore` (glob pattern) - pattern for ignored files. These files won't be analyzed.
   Hint: add `**/*.spec.ts` then identifiers that are used only in tests will be marked as unused.
+- `ignoreExports` (glob pattern) - pattern for files where exports are considered used.
+  Hint: add here entrypoints to your app as exports there are meant to be used by external code.
 
 
 ## CLI tool

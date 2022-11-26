@@ -32,6 +32,7 @@ export const noUnused: Rule.RuleModule = {
         type: 'object',
         properties: {
           ignore: {type: 'string'},
+          ignoreExports: {type: 'string'},
         },
         additionalProperties: false,
       },
@@ -45,6 +46,7 @@ export const noUnused: Rule.RuleModule = {
       previousProgram = program;
       ({seenIdentifiers, usedIdentifiers} = analyze(program, {
         ignoredFilesPattern: context.options[0]?.ignore,
+        ignoredExportsPattern: context.options[0]?.ignoreExports,
       }));
     }
 
